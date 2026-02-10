@@ -6,13 +6,12 @@
     <style>
         body { background: black; color: #00FF41; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
         #terminal { width: 80%; border: 1px solid #00FF41; padding: 20px; box-shadow: 0 0 15px #00FF41; }
-        .line { margin-bottom: 10px; }
-        .cursor { display: inline-block; width: 10px; height: 20px; background: #00FF41; animation: blink 0.7s infinite; }
-        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+        .line { margin-bottom: 10px; font-size: 1.2em; }
     </style>
 </head>
 <body>
     <div id="terminal"></div>
+
     <script>
         const term = document.getElementById('terminal');
         const text = [
@@ -20,8 +19,9 @@
             "[AUTH] Bu sistemə giriş yalnız xüsusi şəxslər üçündür.",
             "[INFO] Şifrəni tapmaq üçün qəlbinin səsinə qulaq as...",
             "--------------------------------------------------",
-            "[PROMPT] Şifrəni daxil edin (11 hərf, bitişik):"
+            "[PROMPT] Şifrəni daxil edin:"
         ];
+
         let line = 0;
         function show() {
             if(line < text.length) {
@@ -35,16 +35,25 @@
                 setTimeout(ask, 500);
             }
         }
+
         function ask() {
             let p = prompt("SİSTEM ŞİFRƏSİ (İpucu: Ən böyük sirrim...):");
-            if(p && p.toLowerCase() === "senisevirem") {
-                alert("GİRİŞ TƏSDİQLƏNDİ! SISTEMƏ XOŞ GƏLDİN, SEVİMLİ İSTİFADƏÇİ.");
-                window.location.href = "script.html"; // Yaşıl kodlara keçid
-            } else {
-                alert("XƏTA! ŞİFRƏ YANLIŞDIR. SİSTEMDƏN QOVULDUNUZ!");
-                location.reload();
+            
+            if(p) {
+                // Şifrəni təmizləyirik: boşluqları silmirik amma kənardakıları atırıq və kiçik hərf edirik
+                let cleanPass = p.toLowerCase().trim();
+                
+                if(cleanPass === "senisevirem" || cleanPass === "seni sevirem") {
+                    alert("GİRİŞ TƏSDİQLƏNDİ! Səni çox gözləyirdim...");
+                    // Səni yaşıl haker ekranına aparır
+                    window.location.href = "NeonRunner/index.html"; 
+                } else {
+                    alert("XƏTA! ŞİFRƏ YANLIŞDIR. Yenidən cəhd et.");
+                    location.reload();
+                }
             }
         }
+
         show();
     </script>
 </body>
