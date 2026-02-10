@@ -17,7 +17,8 @@
         const text = [
             "[SYSTEM] Təhlükəsizlik protokolu aktivdir...",
             "[AUTH] Bu sistemə giriş yalnız xüsusi şəxslər üçündür.",
-            "[INFO] Şifrəni tapmaq üçün qəlbinin səsinə qulaq as...",
+            "[INFO] Şifrə 11 hərfdən və 2 sözdən ibarətdir...",
+            "[INFO] Qəlbinin səsinə qulaq as və yaz.",
             "--------------------------------------------------",
             "[PROMPT] Şifrəni daxil edin:"
         ];
@@ -37,16 +38,16 @@
         }
 
         function ask() {
-            let p = prompt("SİSTEM ŞİFRƏSİ (İpucu: Ən böyük sirrim...):");
+            let p = prompt("SİSTEM ŞİFRƏSİ (İpucu: 11 hərf, 2 söz, ən böyük sirrim...):");
             
             if(p) {
-                // Şifrəni təmizləyirik: boşluqları silmirik amma kənardakıları atırıq və kiçik hərf edirik
                 let cleanPass = p.toLowerCase().trim();
                 
-                if(cleanPass === "senisevirem" || cleanPass === "seni sevirem") {
+                // Bütün ehtimal olunan yazılışları bura əlavə etdim
+                if(cleanPass === "səni sevirəm" || cleanPass === "seni sevirem" || 
+                   cleanPass === "sənisevirəm" || cleanPass === "senisevirem") {
                     alert("GİRİŞ TƏSDİQLƏNDİ! Səni çox gözləyirdim...");
-                    // Səni yaşıl haker ekranına aparır
-                    window.location.href = "NeonRunner/index.html"; 
+                    window.location.href = "NeonRunner/index.html";
                 } else {
                     alert("XƏTA! ŞİFRƏ YANLIŞDIR. Yenidən cəhd et.");
                     location.reload();
