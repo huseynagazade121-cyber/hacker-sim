@@ -2,11 +2,12 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <title>SİSTEMƏ GİRİŞ - MƏXFİ</title>
+    <title>MƏXFİ MESAJ</title>
     <style>
-        body { background: black; color: #00FF41; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        #terminal { width: 80%; border: 1px solid #00FF41; padding: 20px; box-shadow: 0 0 15px #00FF41; }
-        .line { margin-bottom: 10px; font-size: 1.2em; }
+        body { background: black; color: #00FF41; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        #terminal { width: 85%; border: 1px solid #00FF41; padding: 30px; box-shadow: 0 0 25px #00FF41; line-height: 1.8; min-height: 200px; }
+        .cursor { display: inline-block; width: 10px; background: #00FF41; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
     </style>
 </head>
 <body>
@@ -14,48 +15,39 @@
 
     <script>
         const term = document.getElementById('terminal');
-        const text = [
-            "[SYSTEM] Təhlükəsizlik protokolu aktivdir...",
-            "[AUTH] Bu sistemə giriş yalnız xüsusi şəxslər üçündür.",
-            "[INFO] Şifrə 11 hərfdən və 2 sözdən ibarətdir...",
-            "[INFO] Qəlbinin səsinə qulaq as və yaz.",
-            "--------------------------------------------------",
-            "[PROMPT] Şifrəni daxil edin:"
-        ];
+        
+        // Sənin düzəliş edilmiş səmimi məktubun:
+        const secretMessage = "Giriş təsdiqləndi...\n\nSalam... Bu mesajı oxuyursansa, deməli şifrəni tapmısan. Sənin Bakıya getməyin məni çox kədərləndirir. Bu kiçik saytı sənin üçün xüsusi olaraq hazırladım ki, məni unudmayasan. Səni çox sevirəm və həmişə gözləyəcəm. Sən mənim ən dəyərli yarımsan. Yaxşı yol, özünə muğayat ol...";
 
-        let line = 0;
-        function show() {
-            if(line < text.length) {
-                const div = document.createElement('div');
-                div.className = 'line';
-                div.innerHTML = "> " + text[line];
-                term.appendChild(div);
-                line++;
-                setTimeout(show, 800);
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                term.innerHTML = text.substring(0, i + 1) + '<span class="cursor">&nbsp;</span>';
+                setTimeout(() => typeWriter(text, i + 1), 100);
             } else {
-                setTimeout(ask, 500);
+                term.innerHTML = text + '<span class="cursor">&nbsp;</span>';
             }
         }
 
         function ask() {
+            // İpucu bura əlavə olundu: 11 hərf, 2 söz
             let p = prompt("SİSTEM ŞİFRƏSİ (İpucu: 11 hərf, 2 söz, ən böyük sirrim...):");
-            
             if(p) {
-                let cleanPass = p.toLowerCase().trim();
-                
-                // Bütün ehtimal olunan yazılışları bura əlavə etdim
-                if(cleanPass === "səni sevirəm" || cleanPass === "seni sevirem" || 
-                   cleanPass === "sənisevirəm" || cleanPass === "senisevirem") {
-                    alert("GİRİŞ TƏSDİQLƏNDİ! Səni çox gözləyirdim...");
-                    window.location.href = "NeonRunner/index.html";
+                let clean = p.toLowerCase().trim();
+                // Bütün yazılış variantlarını qəbul edir
+                if(clean === "səni sevirəm" || clean === "seni sevirem" || clean === "sənisevirəm" || clean === "senisevirem") {
+                    term.innerHTML = ""; 
+                    typeWriter(secretMessage, 0); 
                 } else {
-                    alert("XƏTA! ŞİFRƏ YANLIŞDIR. Yenidən cəhd et.");
+                    alert("Xəta! Şifrə yanlışdır. Yenidən cəhd et.");
                     location.reload();
                 }
             }
         }
 
-        show();
+        window.onload = () => {
+            term.innerHTML = "> Sistem yüklənir...<br>> Şifrə gözlənilir...";
+            setTimeout(ask, 1000);
+        };
     </script>
 </body>
 </html>
