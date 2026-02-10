@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>MƏXFİ MESAJ</title>
     <style>
-        body { background: black; color: #00FF41; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        #terminal { width: 85%; border: 1px solid #00FF41; padding: 30px; box-shadow: 0 0 25px #00FF41; line-height: 1.8; min-height: 200px; }
-        .cursor { display: inline-block; width: 10px; background: #00FF41; animation: blink 1s infinite; }
+        body { background: black; color: #00FF41; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        #terminal { width: 85%; border: 1px solid #00FF41; padding: 30px; box-shadow: 0 0 25px #00FF41; line-height: 1.8; min-height: 200px; white-space: pre-wrap; }
+        .cursor { display: inline-block; width: 10px; height: 1.2em; background: #00FF41; margin-left: 5px; vertical-align: middle; animation: blink 1s infinite; }
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
     </style>
 </head>
@@ -16,24 +16,23 @@
     <script>
         const term = document.getElementById('terminal');
         
-        // Sənin düzəliş edilmiş səmimi məktubun:
+        // Sənin tam məktubun:
         const secretMessage = "Giriş təsdiqləndi...\n\nSalam... Bu mesajı oxuyursansa, deməli şifrəni tapmısan. Sənin Bakıya getməyin məni çox kədərləndirir. Bu kiçik saytı sənin üçün xüsusi olaraq hazırladım ki, məni unudmayasan. Səni çox sevirəm və həmişə gözləyəcəm. Sən mənim ən dəyərli yarımsan. Yaxşı yol, özünə muğayat ol...";
 
         function typeWriter(text, i) {
             if (i < text.length) {
-                term.innerHTML = text.substring(0, i + 1) + '<span class="cursor">&nbsp;</span>';
-                setTimeout(() => typeWriter(text, i + 1), 100);
+                term.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
+                setTimeout(() => typeWriter(text, i + 1), 70); // Yazı sürəti
             } else {
-                term.innerHTML = text + '<span class="cursor">&nbsp;</span>';
+                term.innerHTML = text + '<span class="cursor"></span>';
             }
         }
 
         function ask() {
-            // İpucu bura əlavə olundu: 11 hərf, 2 söz
             let p = prompt("SİSTEM ŞİFRƏSİ (İpucu: 11 hərf, 2 söz, ən böyük sirrim...):");
             if(p) {
                 let clean = p.toLowerCase().trim();
-                // Bütün yazılış variantlarını qəbul edir
+                // Şifrə variantları
                 if(clean === "səni sevirəm" || clean === "seni sevirem" || clean === "sənisevirəm" || clean === "senisevirem") {
                     term.innerHTML = ""; 
                     typeWriter(secretMessage, 0); 
