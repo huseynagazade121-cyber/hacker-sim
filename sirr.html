@@ -37,14 +37,16 @@
         }
 
         function ask() {
-            let p = prompt("SİSTEM ŞİFRƏSİ\nİpucu: Cümləni tamamla: 'Mən səni .........'\n(Şifrə 7 hərfdən ibarətdir)");
+            // Sənin istədiyin o vacib ipucu bura əlavə olundu:
+            let p = prompt("SİSTEM ŞİFRƏSİ\n1. İpucu: 'Mən səni .........'\n2. İpucu: Şifrəni balaca hərflərlə və AZƏRBAYCAN şrifti ilə (ə hərfi ilə) yazın.");
+            
             if(p) {
                 let clean = p.toLowerCase().trim();
                 if(clean === "sevirəm" || clean === "sevirem") {
                     term.innerHTML = ""; 
                     typeWriter(secretMessage, 0); 
                 } else {
-                    alert("Şifrə yanlışdır. Ürəyinin səsini dinlə...");
+                    alert("Şifrə yanlışdır. Balaca hərflərlə yazmağı unutma!");
                     location.reload();
                 }
             }
