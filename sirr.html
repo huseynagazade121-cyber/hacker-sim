@@ -2,13 +2,49 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MƏXFİ MESAJ</title>
     <style>
-        body { background: black; color: #00FF41; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        #terminal { width: 90%; border: 1px solid #00FF41; padding: 25px; box-shadow: 0 0 25px #00FF41; line-height: 1.6; height: 80vh; overflow-y: auto; white-space: pre-wrap; font-size: 1.05em; }
-        .cursor { display: inline-block; width: 10px; height: 1.2em; background: #00FF41; margin-left: 5px; vertical-align: middle; animation: blink 1s infinite; }
+        body { 
+            background: black; 
+            color: #00FF41; 
+            font-family: 'Courier New', Courier, monospace; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            overflow: hidden; 
+        }
+        #terminal { 
+            width: 92%; 
+            height: 85vh; 
+            border: 2px solid #00FF41; 
+            padding: 15px; 
+            box-shadow: 0 0 20px #00FF41; 
+            line-height: 1.5; 
+            overflow-y: auto; 
+            white-space: pre-wrap; 
+            /* Telefon üçün yazı ölçüsü böyüdüldü */
+            font-size: 1.2em; 
+            word-wrap: break-word;
+        }
+        .cursor { 
+            display: inline-block; 
+            width: 8px; 
+            height: 1.2em; 
+            background: #00FF41; 
+            margin-left: 3px; 
+            vertical-align: middle; 
+            animation: blink 1s infinite; 
+        }
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
         #terminal::-webkit-scrollbar { width: 0px; }
+        
+        /* Ekran çox kiçikdirsə yazını bir az da böyüt */
+        @media screen and (max-width: 480px) {
+            #terminal { font-size: 1.3em; padding: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -29,14 +65,14 @@
             if (i < text.length) {
                 term.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
                 term.scrollTop = term.scrollHeight;
-                setTimeout(() => typeWriter(text, i + 1), 55);
+                setTimeout(() => typeWriter(text, i + 1), 50);
             } else {
                 term.innerHTML = text + '<span class="cursor"></span>';
             }
         }
 
         function ask() {
-            let p = prompt("SİSTEM ŞİFRƏSİ\n1. İpucu: 'Mən səni .........'\n2. İpucu: Şifrəni balaca hərflərlə və AZƏRBAYCAN klaviaturası ilə (ə hərfi ilə) yaz.");
+            let p = prompt("SİSTEM ŞİFRƏSİ\n1. İpucu: 'Mən səni .........'\n2. İpucu: Şifrəni balaca hərflərlə və AZƏRBAYCAN klaviaturası ilə yaz.");
             if(p) {
                 let clean = p.toLowerCase().trim();
                 if(clean === "sevirəm" || clean === "sevirem") {
