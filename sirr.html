@@ -5,9 +5,10 @@
     <title>MƏXFİ MESAJ</title>
     <style>
         body { background: black; color: #00FF41; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        #terminal { width: 85%; border: 1px solid #00FF41; padding: 30px; box-shadow: 0 0 25px #00FF41; line-height: 1.8; min-height: 200px; white-space: pre-wrap; }
+        #terminal { width: 90%; border: 1px solid #00FF41; padding: 25px; box-shadow: 0 0 25px #00FF41; line-height: 1.6; height: 80vh; overflow-y: auto; white-space: pre-wrap; font-size: 1.05em; }
         .cursor { display: inline-block; width: 10px; height: 1.2em; background: #00FF41; margin-left: 5px; vertical-align: middle; animation: blink 1s infinite; }
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+        #terminal::-webkit-scrollbar { width: 0px; }
     </style>
 </head>
 <body>
@@ -16,38 +17,42 @@
     <script>
         const term = document.getElementById('terminal');
         
-        // Məktubun eynilə saxlanıldı:
-        const secretMessage = "Giriş təsdiqləndi...\n\nSalam... Bu mesajı oxuyursansa, deməli şifrəni tapmısan. Sənin Bakıya getməyin məni çox kədərləndirir. Bu kiçik saytı sənin üçün xüsusi olaraq hazırladım ki, məni unudmayasan. Səni çox sevirəm və həmişə gözləyəcəm. Sən mənim ən dəyərli yarımsan. Yaxşı yol, özünə muğayat ol...";
+        const secretMessage = "Giriş təsdiqləndi...\n\n" +
+            "Salam... Bu sətirləri oxuyursansa, deməli ürəyimin ən gizli kodunu tapmısan.\n\n" +
+            "Sənin bu şəhərdən getməyin mənim dünyamda böyük bir sistem xətası kimidir. Hər şey bir anda rəngsizləşdi, sanki bütün ekranlar qaraldı. Amma bil ki, bu ayrılıq sadəcə müvəqqəti bir fasilədir.\n\n" +
+            "İndi bəlkə uzaqlara gedirsən, amma planlarım hələ bitməyib. Onsuz da 9-cu sinif imtahanlarını verən kimi Bakıya, texnikumda oxumağa köçəcəm. Bakıdakı ev ünvanımı da bilirsən... Çox keçmədən orada, eyni şəhərin eyni küçələrində yenidən görüşəcəyik.\n\n" +
+            "Bu saytı sənə olan hər bir duyğumu kodlara tökmək üçün qurdum. İstədim ki, uzaqlarda darıxanda bu yaşıl hərflərə baxasan və biləsən ki, Qazaxda səni hər saniyə düşünən biri var. Bizim bağımız heç bir naqildən və ya internetdən asılı deyil, o çox daha dərindir.\n\n" +
+            "Sən mənim bu həyatda rastlaşdığım ən gözəl möcüzə, ən dəyərli yarımsan. Hər zaman qəlbimin ən yuxarı küncündə, ən təhlükəsiz qovluğunda qalacaqsan.\n\n" +
+            "Yaxşı yol, özünə çox muğayat ol. Qəlbim, dualarım və bütün bu kodlar səninlədir. SƏNİ SEVİRƏM...\n\n" +
+            "[Səni Bakıda səbirsizliklə gözləyən Hüseyn]";
 
         function typeWriter(text, i) {
             if (i < text.length) {
                 term.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
-                setTimeout(() => typeWriter(text, i + 1), 70);
+                term.scrollTop = term.scrollHeight;
+                setTimeout(() => typeWriter(text, i + 1), 55);
             } else {
                 term.innerHTML = text + '<span class="cursor"></span>';
             }
         }
 
         function ask() {
-            // Yeni ipucu bura əlavə olundu
             let p = prompt("SİSTEM ŞİFRƏSİ\nİpucu: Cümləni tamamla: 'Mən səni .........'\n(Şifrə 7 hərfdən ibarətdir)");
-            
             if(p) {
                 let clean = p.toLowerCase().trim();
-                // Şifrə artıq tək söz "sevirəm" oldu
                 if(clean === "sevirəm" || clean === "sevirem") {
                     term.innerHTML = ""; 
                     typeWriter(secretMessage, 0); 
                 } else {
-                    alert("Xəta! Şifrə yanlışdır. Yenidən cəhd et.");
+                    alert("Şifrə yanlışdır. Ürəyinin səsini dinlə...");
                     location.reload();
                 }
             }
         }
 
         window.onload = () => {
-            term.innerHTML = "> Sistem yüklənir...<br>> Şifrə gözlənilir...";
-            setTimeout(ask, 1000);
+            term.innerHTML = "> Sistem yüklənir...<br>> Hisslər sinxronizasiya olunur...<br>> Şifrə gözlənilir...";
+            setTimeout(ask, 1500);
         };
     </script>
 </body>
