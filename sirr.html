@@ -16,24 +16,26 @@
     <script>
         const term = document.getElementById('terminal');
         
-        // Sənin tam məktubun:
+        // Məktubun eynilə saxlanıldı:
         const secretMessage = "Giriş təsdiqləndi...\n\nSalam... Bu mesajı oxuyursansa, deməli şifrəni tapmısan. Sənin Bakıya getməyin məni çox kədərləndirir. Bu kiçik saytı sənin üçün xüsusi olaraq hazırladım ki, məni unudmayasan. Səni çox sevirəm və həmişə gözləyəcəm. Sən mənim ən dəyərli yarımsan. Yaxşı yol, özünə muğayat ol...";
 
         function typeWriter(text, i) {
             if (i < text.length) {
                 term.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
-                setTimeout(() => typeWriter(text, i + 1), 70); // Yazı sürəti
+                setTimeout(() => typeWriter(text, i + 1), 70);
             } else {
                 term.innerHTML = text + '<span class="cursor"></span>';
             }
         }
 
         function ask() {
-            let p = prompt("SİSTEM ŞİFRƏSİ (İpucu: 11 hərf, 2 söz, ən böyük sirrim...):");
+            // Yeni ipucu bura əlavə olundu
+            let p = prompt("SİSTEM ŞİFRƏSİ\nİpucu: Cümləni tamamla: 'Mən səni .........'\n(Şifrə 7 hərfdən ibarətdir)");
+            
             if(p) {
                 let clean = p.toLowerCase().trim();
-                // Şifrə variantları
-                if(clean === "səni sevirəm" || clean === "seni sevirem" || clean === "sənisevirəm" || clean === "senisevirem") {
+                // Şifrə artıq tək söz "sevirəm" oldu
+                if(clean === "sevirəm" || clean === "sevirem") {
                     term.innerHTML = ""; 
                     typeWriter(secretMessage, 0); 
                 } else {
