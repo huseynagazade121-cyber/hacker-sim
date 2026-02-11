@@ -19,10 +19,9 @@
         
         const secretMessage = "Giriş təsdiqləndi...\n\n" +
             "Salam... Bu sətirləri oxuyursansa, deməli ürəyimin ən gizli kodunu tapmısan.\n\n" +
-            "Sənin bu şəhərdən getməyin mənim dünyamda böyük bir sistem xətası kimidir. Hər şey bir anda rəngsizləşdi, sanki bütün ekranlar qaraldı. Amma bil ki, bu ayrılıq sadəcə müvəqqəti bir fasilədir.\n\n" +
-            "İndi bəlkə uzaqlara gedirsən, amma planlarım hələ bitməyib. Onsuz da 9-cu sinif imtahanlarını verən kimi Bakıya, texnikumda oxumağa köçəcəm. Bakıdakı ev ünvanımı da bilirsən... Çox keçmədən orada, eyni şəhərin eyni küçələrində yenidən görüşəcəyik.\n\n" +
-            "Bu saytı sənə olan hər bir duyğumu kodlara tökmək üçün qurdum. İstədim ki, uzaqlarda darıxanda bu yaşıl hərflərə baxasan və biləsən ki, Qazaxda səni hər saniyə düşünən biri var. Bizim bağımız heç bir naqildən və ya internetdən asılı deyil, o çox daha dərindir.\n\n" +
-            "Sən mənim bu həyatda rastlaşdığım ən gözəl möcüzə, ən dəyərli yarımsan. Hər zaman qəlbimin ən yuxarı küncündə, ən təhlükəsiz qovluğunda qalacaqsan.\n\n" +
+            "Sənin bu şəhərdən getməyin mənim dünyamda böyük bir sistem xətası kimidir. Amma bil ki, bu ayrılıq sadəcə müvəqqəti bir fasilədir. Onsuz da 9-cu sinif imtahanlarını verən kimi Bakıya, texnikumda oxumağa köçəcəm. Bakıdakı ev ünvanımı da bilirsən... Çox keçmədən orada yenidən görüşəcəyik.\n\n" +
+            "Bu sayt hələ başlanğıcdır. Avqustun 29-u, yəni sənin ad günündə belə bir saytla səni yenidən üz-üzə buraxacam. Hətta aradada sənin üçün belə sürpriz saytlar hazırlamağa davam edəcəm ki, məsafələri hiss etməyəsən.\n\n" +
+            "Sən mənim bu həyatda rastlaşdığım ən gözəl möcüzə, ən dəyərli yarımsan. Unutma ki, Qazaxda səni hər saniyə düşünən və yolunu gözləyən biri var.\n\n" +
             "Yaxşı yol, özünə çox muğayat ol. Qəlbim, dualarım və bütün bu kodlar səninlədir. SƏNİ SEVİRƏM...\n\n" +
             "[Səni Bakıda səbirsizliklə gözləyən Hüseyn]";
 
@@ -37,9 +36,7 @@
         }
 
         function ask() {
-            // Sənin istədiyin o vacib ipucu bura əlavə olundu:
-            let p = prompt("SİSTEM ŞİFRƏSİ\n1. İpucu: 'Mən səni .........'\n2. İpucu: Şifrəni balaca hərflərlə və AZƏRBAYCAN şrifti ilə (ə hərfi ilə) yazın.");
-            
+            let p = prompt("SİSTEM ŞİFRƏSİ\n1. İpucu: 'Mən səni .........'\n2. İpucu: Şifrəni balaca hərflərlə və AZƏRBAYCAN klaviaturası ilə (ə hərfi ilə) yaz.");
             if(p) {
                 let clean = p.toLowerCase().trim();
                 if(clean === "sevirəm" || clean === "sevirem") {
