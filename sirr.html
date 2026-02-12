@@ -11,7 +11,7 @@
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
         #terminal::-webkit-scrollbar { width: 5px; }
         #terminal::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        /* Sayğacı gizli saxlayırıq ki, o görməsin */
+        /* Sayğac gizli qalır */
         #stat-box { position: absolute; bottom: 0; opacity: 0; pointer-events: none; }
     </style>
 </head>
@@ -26,19 +26,21 @@
         const term = document.getElementById('terminal');
         
         const secretMessage = "Sistem Mesajı: Yeni bir səhifə açılır...\n\n" +
-            "Bu şifrəni tapdığına sevindim. Dünən səni o qədər duyğusal görmək mənim üçün çox dəyərli idi. Səhnədəki uğurun, o göz yaşların... hamısı sənin nə qədər təmiz qəlbin olduğunu bir daha göstərdi.\n\n" +
-            "Etiraf edim ki, son vaxtlar aramızda olan o soyuqluq və bəzi maneələr qəlbimi bir az qırsa da, sənə olan hörmətim heç vaxt dəyişmədi. Mən sənin gedişinə üzülsəm də, sənin uğurlarınla həmişə fəxr edəcəm.\n\n" +
-            "Bakı sənin üçün yeni bir dünyadır. İnanıram ki, bir gün xəyallarındakı o moda dizayneri olacaqsan və sənin əl işlərini ən uca zirvələrdə görəcəm. Sən və bacım bu arzuya layiqsiniz.\n\n" +
-            "Bəlkə də bir gün yollarımız o böyük şəhərin küçələrində yenidən kəsişər. O vaxta qədər özünə və xəyallarına yaxşı bax. Əgər Bakıda sənə kömək lazım olsa və ya sadəcə köhnə bir dostla söhbət etmək istəsən, mən həmişə bir mesaj uzağındayam. Onsuz da, məni harda tapacağını, ev ünvanımı bilirsən...\n\n" +
-            "Yaxşı yol, Leyla. Sənə ən parlaq gələcəyi arzulayıram.\n\n" +
+            "Bu şifrəni tapdığına sevindim. Bəzən ən çətin qapıların arxasında ən sadə həqiqətlər gizlənir — eynən bu gün sənə arzuladığım o tək kəlmə kimi...\n\n" +
+            "Dünən səni səhnədə o qədər canlı, o qədər güclü görmək mənim üçün qürurverici idi. Gülnaz obrazında hər kəsə gülümsəyirdin, hamı səni rolda sanırdı. Amma sonra...\n\n" +
+            "Günorta siniflə görüşəndə, o qədər insanın içində göz yaşlarına hakim ola bilməməyin, əslində içindəki o fırtınanı hamımıza göstərdi. Bilirəm, o yaşlar səhnədəki rolun üçün deyil, sadəcə Bakıya getmək istəmədiyinə, buradakılardan qopmağın verdiyi o ağır kədərə görə idi. Hər kəsin qarşısında o pərdəni endirməyin, o təmiz və kövrək qəlbini gizlətmədən ortaya qoymağın sənin nə qədər səmimi biri olduğunu bir daha sübut etdi.\n\n" +
+            "Sən o an sadəcə hisslərini bölüşmürdün, sən əslində bütün bu şəhəri, dostlarını və xatirələrini o damlalara sığdırıb, içindəki getmək istəməyən o Leyla ilə vuruşurdun. Həqiqi Leylanın o dəqiqələrdə nə qədər qəlbi qırıq olduğunu mən o səmimiyyətində gördüm.\n\n" +
+            "Bakı... O böyük, səs-küylü və küləklər şəhəri artıq sənin yeni dünyandır. İnanıram ki, bir gün o şəhərin ən parlaq vitrinlərində sənin adını, sənin dizayn etdiyin o incə əl işlərini görəcəm. Sən sadəcə parça kəsməyəcəksən, sən xəyallarını o parçalara tikəcəksən. Sən və bacım — ikiniz də ən böyük arzulara layiqsiniz. Getmək istəmədiyin o şəhər, bəlkə də sənin ən böyük zəfərlərinin şahidi olacaq.\n\n" +
+            "Bəlkə də bir gün, illər sonra, o böyük şəhərin kalabalığında yollarımız yenidən kəsişər. O vaxta qədər özünə, o gözəl qəlbinə və böyük xəyallarına çox yaxşı bax. Unutma ki, Bakının soyuq küləyi səni üşütsə və ya sadəcə köhnə bir dostun səmimiyyətinə ehtiyacın olsa, mən həmişə bir mesaj qədər uzağındayam. Məni harda tapacağını, ev ünvanımı və qapımın sənə hər zaman açıq olduğunu onsuz da bilirsən...\n\n" +
+            "Yaxşı yol, Leyla. Yolun işıqlı, bəxtin gətirdiyin parçalar qədər rəngarəng olsun.\n\n" +
             "Uğurlar, gələcəyin moda dizayneri!\n\n" +
-            "[Səni hər zaman anlayan, Hüseyn]";
+            "[Səni hər zaman anlayan və o göz yaşlarının səmimiyyətinə inanan, Hüseyn]";
 
         function typeWriter(text, i) {
             if (i < text.length) {
                 term.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
                 term.scrollTop = term.scrollHeight;
-                setTimeout(() => typeWriter(text, i + 1), 50);
+                setTimeout(() => typeWriter(text, i + 1), 40);
             } else {
                 term.innerHTML = text + '<span class="cursor"></span>';
             }
