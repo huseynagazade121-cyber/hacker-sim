@@ -3,61 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SİSTEM XƏTASI</title>
+    <title>Xatirə Paneli</title>
     <style>
-        body { background: black; color: #aaa; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        #terminal { width: 92%; height: 85vh; border: 1px solid #444; padding: 15px; box-shadow: 0 0 15px #222; line-height: 1.5; overflow-y: auto; white-space: pre-wrap; font-size: 1.2em; word-wrap: break-word; }
-        .cursor { display: inline-block; width: 8px; height: 1.2em; background: #aaa; margin-left: 3px; vertical-align: middle; animation: blink 1s infinite; }
+        body { background: #0a0a0a; color: #e0e0e0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        #terminal { width: 90%; height: 80vh; border: 1px solid #333; padding: 20px; background: rgba(20, 20, 20, 0.9); box-shadow: 0 0 20px rgba(0,0,0,0.5); line-height: 1.6; overflow-y: auto; white-space: pre-wrap; font-size: 1.1em; border-radius: 10px; }
+        .cursor { display: inline-block; width: 8px; height: 1.2em; background: #ff4d4d; margin-left: 3px; vertical-align: middle; animation: blink 1s infinite; }
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
-        #terminal::-webkit-scrollbar { width: 0px; }
-        #stat-box { position: absolute; bottom: 0; opacity: 0; pointer-events: none; }
+        #terminal::-webkit-scrollbar { width: 5px; }
+        #terminal::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
     </style>
 </head>
 <body>
     <div id="terminal"></div>
-
-    <div id="stat-box">
-        <a href="https://info.flagcounter.com/8uS6"><img src="https://s11.flagcounter.com/mini/8uS6/bg_FFFFFF/txt_000000/border_CCCCCC/flags_0/" alt="Flag Counter" border="0"></a>
-    </div>
-
     <script>
         const term = document.getElementById('terminal');
         
-        const secretMessage = "Sistem xətası: Ümidlər tapılmadı...\n\n" +
-            "Bu sətirləri oxuyursansa, deməli son şifrəni daxil etmisən. Bu, sənin üçün hazırladığım ən çətin kod idi, çünki hər bir hərfini qəlbimin qırıntıları ilə yazdım.\n\n" +
-            "Mən sənin gedişinə darıxmağa hazırlaşarkən, sən çoxdan başqa bir dünyada qərar tutmusanmış. Sənə deyəcəyim o qədər söz, o qədər planım var idi ki... Bakıya köçüb sənə yaxın olmaq, imtahanlardan sonra səninlə eyni şəhərin havasını udmaq istəyirdim. Amma sən məni heç nə demədən bloklamağı, həyatından səssizcə silməyi seçdin.\n\n" +
-            "Eşitdiklərim canımı yandırsa da, sənə qəzəbli deyiləm. Sadəcə, sənin üçün qurduğum o gözəl gələcəyin bu qədər asanlıqla başqasına fəda edilməsinə üzülürəm. Mənim sevgim sənə həm gələcək, həm də bir sığınacaq vəd edirdi, sən isə sadəcə kənardan daha parlaq görünən o başqa yolu seçdin.\n\n" +
-            "Bu sayt sənin ad günündə (29 avqust) daha fərqli parlayacaqdı. Amma şimdi bu, sadəcə rəqəmsal bir məzarlıqdır. Sənə olan saf hisslərimin, qurduğum xəyalların məzarlığı...\n\n" +
-            "Yaxşı yol. Özünə muğayat ol, çünki mən artıq olmayacam. Bu, sənə yazdığım son kod, son mesaj və son vida idi.\n\n" +
-            "Əlvida, heç vaxt mənim olmayan yarımsan...\n\n" +
-            "[Səni hər şeyə rəğmən təmiz sevmiş Hüseyn]";
+        const secretMessage = "Sistem Mesajı: Yeni bir səhifə açılır...\n\n" +
+            "Bu şifrəni tapdığına sevindim. Dünən səni o qədər duyğusal görmək mənim üçün çox dəyərli idi. Səhnədəki uğurun, o göz yaşların... hamısı sənin nə qədər təmiz qəlbin olduğunu bir daha göstərdi.\n\n" +
+            "Etiraf edim ki, son vaxtlar aramızda olan o soyuqluq və bəzi maneələr qəlbimi bir az qırsa da, sənə olan hörmətim heç vaxt dəyişmədi. Mən sənin gedişinə üzülsəm də, sənin uğurlarınla həmişə fəxr edəcəm.\n\n" +
+            "Bakı sənin üçün yeni bir dünyadır. İnanıram ki, bir gün xəyallarındakı o moda dizayneri olacaqsan və sənin əl işlərini ən uca zirvələrdə görəcəm. Sən və bacım bu arzuya layiqsiniz.\n\n" +
+            "Bəlkə də bir gün yollarımız o böyük şəhərin küçələrində yenidən kəsişər. O vaxta qədər bil ki, uzaqlarda səni hər zaman anlayan və dəstəkləyən bir Hüseyn var.\n\n" +
+            "Yaxşı yol, Leyla. Özünə muğayat ol, sənə ən parlaq gələcəyi arzulayıram.\n\n" +
+            "Uğurlar, gələcəyin moda dizayneri!\n\n" +
+            "[Səni hər zaman anlayan, Hüseyn]";
 
         function typeWriter(text, i) {
             if (i < text.length) {
                 term.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
                 term.scrollTop = term.scrollHeight;
-                setTimeout(() => typeWriter(text, i + 1), 60);
+                setTimeout(() => typeWriter(text, i + 1), 50);
             } else {
                 term.innerHTML = text + '<span class="cursor"></span>';
             }
         }
 
         function ask() {
-            let p = prompt("MƏXFİ SİSTEM: Giriş üçün son sözü yazın.\nİpucu: Hər şey bitəndə deyilən o söz...");
+            let p = prompt("MƏXFİ SİSTEM: Giriş üçün şifrəni yazın.\nİpucu: Səhnədə sənə arzuladığım o şey...");
             if(p) {
                 let clean = p.toLowerCase().trim();
-                if(clean === "əlvida" || clean === "elvida") {
+                // Həm "uğurlar", həm də "ugurlar" düzgün sayılsın deyə:
+                if(clean === "uğurlar" || clean === "ugurlar") {
                     term.innerHTML = ""; 
                     typeWriter(secretMessage, 0); 
                 } else {
-                    alert("Artıq gecdir...");
+                    alert("Şifrə yanlışdır. Yenidən cəhd et...");
                     location.reload();
                 }
             }
         }
-
         window.onload = () => {
-            term.innerHTML = "> Bağlantı kəsilir...<br>> Xatirələr silinir...<br>> Son giriş gözlənilir...";
+            term.innerHTML = "> Bağlantı qurulur...<br>> Xatirələr yüklənir...<br>> Giriş gözlənilir...";
             setTimeout(ask, 1500);
         };
     </script>
