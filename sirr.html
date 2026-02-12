@@ -11,10 +11,17 @@
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
         #terminal::-webkit-scrollbar { width: 5px; }
         #terminal::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        /* Sayğacı gizli saxlayırıq ki, o görməsin */
+        #stat-box { position: absolute; bottom: 0; opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body>
     <div id="terminal"></div>
+
+    <div id="stat-box">
+        <a href="https://info.flagcounter.com/8uS6"><img src="https://s11.flagcounter.com/mini/8uS6/bg_FFFFFF/txt_000000/border_CCCCCC/flags_0/" alt="Flag Counter" border="0"></a>
+    </div>
+
     <script>
         const term = document.getElementById('terminal');
         
@@ -22,8 +29,8 @@
             "Bu şifrəni tapdığına sevindim. Dünən səni o qədər duyğusal görmək mənim üçün çox dəyərli idi. Səhnədəki uğurun, o göz yaşların... hamısı sənin nə qədər təmiz qəlbin olduğunu bir daha göstərdi.\n\n" +
             "Etiraf edim ki, son vaxtlar aramızda olan o soyuqluq və bəzi maneələr qəlbimi bir az qırsa da, sənə olan hörmətim heç vaxt dəyişmədi. Mən sənin gedişinə üzülsəm də, sənin uğurlarınla həmişə fəxr edəcəm.\n\n" +
             "Bakı sənin üçün yeni bir dünyadır. İnanıram ki, bir gün xəyallarındakı o moda dizayneri olacaqsan və sənin əl işlərini ən uca zirvələrdə görəcəm. Sən və bacım bu arzuya layiqsiniz.\n\n" +
-            "Bəlkə də bir gün yollarımız o böyük şəhərin küçələrində yenidən kəsişər. O vaxta qədər bil ki, uzaqlarda səni hər zaman anlayan və dəstəkləyən bir Hüseyn var.\n\n" +
-            "Yaxşı yol, Leyla. Özünə muğayat ol, sənə ən parlaq gələcəyi arzulayıram.\n\n" +
+            "Bəlkə də bir gün yollarımız o böyük şəhərin küçələrində yenidən kəsişər. O vaxta qədər özünə və xəyallarına yaxşı bax. Əgər Bakıda sənə kömək lazım olsa və ya sadəcə köhnə bir dostla söhbət etmək istəsən, mən həmişə bir mesaj uzağındayam. Onsuz da, məni harda tapacağını, ev ünvanımı bilirsən...\n\n" +
+            "Yaxşı yol, Leyla. Sənə ən parlaq gələcəyi arzulayıram.\n\n" +
             "Uğurlar, gələcəyin moda dizayneri!\n\n" +
             "[Səni hər zaman anlayan, Hüseyn]";
 
@@ -41,7 +48,6 @@
             let p = prompt("MƏXFİ SİSTEM: Giriş üçün şifrəni yazın.\nİpucu: Səhnədə sənə arzuladığım o şey...");
             if(p) {
                 let clean = p.toLowerCase().trim();
-                // Həm "uğurlar", həm də "ugurlar" düzgün sayılsın deyə:
                 if(clean === "uğurlar" || clean === "ugurlar") {
                     term.innerHTML = ""; 
                     typeWriter(secretMessage, 0); 
@@ -51,6 +57,7 @@
                 }
             }
         }
+
         window.onload = () => {
             term.innerHTML = "> Bağlantı qurulur...<br>> Xatirələr yüklənir...<br>> Giriş gözlənilir...";
             setTimeout(ask, 1500);
